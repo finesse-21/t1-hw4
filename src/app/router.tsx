@@ -5,6 +5,7 @@ import { UserCreatePage } from "@pages/UserCreatePage/UserCreatePage";
 import { UserEditPage } from "@pages/UserEditPage/UserEditPage";
 import { MainLayout } from "@widgets/Layout/MainLayout";
 import { RequireAuth } from "@shared/lib/guards/RequireAuth";
+import { UserCreateRHFPage } from "@pages/UserCreateRHFPage/UserCreateRHFPage";
 
 export const Routing = () => (
   <Routes>
@@ -24,6 +25,14 @@ export const Routing = () => (
         element={
           <RequireAuth>
             <UserCreatePage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/user/create-rhf"
+        element={
+          <RequireAuth>
+            <UserCreateRHFPage />
           </RequireAuth>
         }
       />

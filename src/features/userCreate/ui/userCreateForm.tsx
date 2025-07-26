@@ -58,7 +58,7 @@ export const UserCreateForm = () => {
             ? new Date(values.birthDate).toISOString()
             : undefined,
           telephone: values.telephone || undefined,
-          employment: values.employment || undefined,
+          employment: values.employment || "",
           userAgreement: Boolean(values.userAgreement),
         };
 
