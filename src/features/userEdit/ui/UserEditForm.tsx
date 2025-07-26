@@ -24,6 +24,7 @@ interface EditUser {
   telephone?: string;
   employment?: string;
   userAgreement?: boolean;
+  id?: string;
 }
 
 const employmentOptions = ["Frontend", "Backend", "QA", "Design"];
@@ -53,9 +54,7 @@ export const UserEditForm = () => {
         const data = res.data;
         setUser({
           ...data,
-          birthDate: data.birthDate
-            ? new Date(data.birthDate).toISOString()
-            : undefined,
+          birthDate: data.birthDate,
         });
       })
       .catch(() => {
@@ -78,9 +77,13 @@ export const UserEditForm = () => {
           const payload = {
             ...values,
             birthDate: values.birthDate
-              ? new Date(values.birthDate).toISOString()
+              ? new Date(values.birthDate)
               : undefined,
           };
+
+          delete (payload as Partial<EditUser>).email;
+          delete (payload as Partial<EditUser>).id;
+
           await api.patch(`/v1/users/${id}`, payload);
           message.success("Пользователь обновлён");
           navigate("/");
@@ -157,10 +160,7 @@ export const UserEditForm = () => {
                 className="w-full"
                 value={values.birthDate ? dayjs(values.birthDate) : undefined}
                 onChange={(date) =>
-                  setFieldValue(
-                    "birthDate",
-                    date ? date.toISOString() : undefined
-                  )
+                  setFieldValue("birthDate", date ? date.toDate() : undefined)
                 }
               />
             </div>

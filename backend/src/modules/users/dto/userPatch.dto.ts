@@ -7,6 +7,7 @@ import {
   IsPhoneNumber,
   IsString,
   IsBoolean,
+  IsDateString,
 } from 'class-validator';
 
 export class UserPatchDto {
@@ -26,7 +27,7 @@ export class UserPatchDto {
   fullName: string;
 
   @IsOptional()
-  @IsDate()
+  @IsDateString()
   @ApiProperty({ description: 'User birthday', nullable: true })
   birthDate?: Date;
 
