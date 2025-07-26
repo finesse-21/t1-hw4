@@ -1,22 +1,17 @@
-import { Layout } from "antd";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { Sidebar } from "@shared/ui/Sidebar";
 import { Header } from "@shared/ui/Header";
 
 export const MainLayout = () => {
-  const location = useLocation();
-
-  if (location.pathname === "/login") return <Outlet />;
-
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <div className="min-h-screen bg-background flex">
       <Sidebar />
-      <Layout>
+      <div className="flex flex-col flex-1">
         <Header />
-        <Layout.Content className="p-4">
+        <main className="p-6">
           <Outlet />
-        </Layout.Content>
-      </Layout>
-    </Layout>
+        </main>
+      </div>
+    </div>
   );
 };

@@ -21,7 +21,7 @@ export const Routing = () => (
         }
       />
       <Route
-        path="/user/create"
+        path="/user/create-formik"
         element={
           <RequireAuth>
             <UserCreatePage />

@@ -1,28 +1,44 @@
-import { Layout, Menu } from "antd";
-import { UserAddOutlined, HomeOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { cn } from "@shared/lib/utils";
 
 export const Sidebar = () => {
-  const navigate = useNavigate();
-
-  const items = [
-    {
-      key: "home",
-      icon: <HomeOutlined />,
-      label: "Главная",
-      onClick: () => navigate("/"),
-    },
-    {
-      key: "create",
-      icon: <UserAddOutlined />,
-      label: "Создать пользователя",
-      onClick: () => navigate("/user/create"),
-    },
-  ];
-
   return (
-    <Layout.Sider width={200} className="bg-white min-h-screen">
-      <Menu mode="inline" items={items} className="h-full border-r-0" />
-    </Layout.Sider>
+    <aside className="w-64 bg-white shadow-lg p-6 h-screen sticky top-0 flex flex-col">
+      <nav className="space-y-2 mt-2">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            cn(
+              "block px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-colors",
+              isActive && "bg-gray-900 text-white hover:text-black"
+            )
+          }
+        >
+          Главная
+        </NavLink>
+        <NavLink
+          to="/user/create-formik"
+          className={({ isActive }) =>
+            cn(
+              "block px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-colors",
+              isActive && "bg-gray-900 text-white hover:text-black"
+            )
+          }
+        >
+          Создать пользователя (Formik)
+        </NavLink>
+        <NavLink
+          to="/user/create-rhf"
+          className={({ isActive }) =>
+            cn(
+              "block px-4 py-2 rounded-lg font-medium text-gray-700 hover:bg-gray-100 hover:text-black transition-colors",
+              isActive && "bg-gray-900 text-white hover:text-black"
+            )
+          }
+        >
+          Создать пользователя (RHF)
+        </NavLink>
+      </nav>
+    </aside>
   );
 };

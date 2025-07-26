@@ -30,14 +30,22 @@ export const LoginForm = () => {
       }}
     >
       {({ errors, touched, isSubmitting }) => (
-        <Form className="max-w-sm mx-auto space-y-4 p-8 bg-white shadow mt-20 rounded">
-          <Typography.Title level={3} className="text-center">
+        <Form className="max-w-sm mx-auto space-y-6 p-8 bg-white shadow-lg mt-24 rounded-xl font-sans">
+          <Typography.Title
+            level={3}
+            className="text-center !mb-6 !text-gray-900 !font-bold"
+          >
             Вход
           </Typography.Title>
           <div>
-            <Field name="email" as={Input} placeholder="Email" />
+            <Field
+              name="email"
+              as={Input}
+              placeholder="Email"
+              className="!border-gray-200 !bg-gray-100 !rounded-lg !py-2 !px-4 !text-base"
+            />
             {errors.email && touched.email && (
-              <div className="text-red-500">{errors.email}</div>
+              <div className="text-red-500 text-sm mt-1">{errors.email}</div>
             )}
           </div>
           <div>
@@ -46,12 +54,19 @@ export const LoginForm = () => {
               type="password"
               as={Input.Password}
               placeholder="Пароль"
+              className="!border-gray-200 !bg-gray-100 !rounded-lg !py-2 !px-4 !text-base"
             />
             {errors.password && touched.password && (
-              <div className="text-red-500">{errors.password}</div>
+              <div className="text-red-500 text-sm mt-1">{errors.password}</div>
             )}
           </div>
-          <Button htmlType="submit" type="primary" block loading={isSubmitting}>
+          <Button
+            htmlType="submit"
+            type="primary"
+            block
+            loading={isSubmitting}
+            className="!bg-gray-900 !border-none !text-white !font-semibold !rounded-lg !py-2"
+          >
             Войти
           </Button>
         </Form>
