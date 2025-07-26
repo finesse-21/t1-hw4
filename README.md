@@ -1,69 +1,55 @@
-# React + TypeScript + Vite
+# Задание 4: Клиент – Работа с формами и аутентификацией
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Описание
 
-Currently, two official plugins are available:
+В этом проекте реализован клиент для работы с формами и аутентификацией. Используются современные технологии: React + TypeScript, React Router v6, менеджер форм (Formik/React Hook Form), UI-фреймворк (например, Material UI), стилизация на ваш выбор.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Основные страницы:
 
-## Expanding the ESLint configuration
+- Главная страница с таблицей пользователей (`/`)
+- Страница создания пользователя (`/user/create`)
+- Страница редактирования пользователя
+- Страница логина (`/login`)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Особенности:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Навигационное меню слева, хедер сверху (кроме страницы логина)
+- Валидация полей формы
+- Два варианта создания пользователя с разными менеджерами форм
+- Кнопка удаления пользователя в таблице
+- Два поля для пароля с проверкой совпадения
+- Автоматическое заполнение полного имени при вводе имени и фамилии
+- Аутентификация через API, токен хранится в cookies
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## Запуск проекта
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Установите зависимости:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   ```bash
+   npm install
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. Запустите сервер API (см. [forms-server](https://github.com/Pardeg/forms-server)):
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   - Следуйте инструкциям в репозитории forms-server.
+   - Убедитесь, что сервер работает на `localhost:4000`.
+
+3. Запустите клиент:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Откройте [http://localhost:5173](http://localhost:5173) (или другой порт, указанный в консоли).
+
+## Вход по умолчанию
+
+- Email: `admin@inno.tech`
+- Пароль: `admin`
+
+## Дополнительно
+
+- Для настройки прокси (если используется Vite), смотрите документацию Vite.
+- Swagger с описанием API доступен на `localhost:4000/api`.
+
+---
