@@ -68,13 +68,14 @@ export const HomePage = () => {
     {
       title: "Действия",
       render: (_: unknown, record: User) => (
-        <Space>
+        <Space wrap>
           <Button
             icon={<EditOutlined />}
             onClick={() => navigate(`/user/edit/${record.id}`)}
-            className="!bg-gray-100 !border-none !text-gray-900 !font-medium !rounded-md hover:!bg-gray-200 transition"
+            className="!bg-gray-100 !border-none !text-gray-900 !font-medium !rounded-md hover:!bg-gray-200 transition !px-2 !py-1"
+            size="small"
           >
-            Редактировать
+            <span className="hidden sm:inline">Редактировать</span>
           </Button>
           <Popconfirm
             title={
@@ -98,9 +99,10 @@ export const HomePage = () => {
             <Button
               danger
               icon={<DeleteOutlined />}
-              className="!bg-white !border !border-gray-200 !text-red-600 !font-medium !rounded-lg hover:!bg-red-50 transition"
+              className="!bg-white !border !border-gray-200 !text-red-600 !font-medium !rounded-lg hover:!bg-red-50 transition !px-2 !py-1"
+              size="small"
             >
-              Удалить
+              <span className="hidden sm:inline">Удалить</span>
             </Button>
           </Popconfirm>
         </Space>
@@ -109,13 +111,13 @@ export const HomePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 font-sans">
-      <div className="bg-white shadow-lg rounded-xl max-w-4xl mx-auto p-8">
-        <div className="flex flex-col gap-6 mb-7">
-          <div className="flex flex-row justify-between items-center gap-4">
+    <div className="min-h-screen bg-gray-50 py-6 px-2 sm:py-10 sm:px-4 font-sans">
+      <div className="bg-white shadow-lg rounded-xl max-w-full sm:max-w-4xl mx-auto p-4 sm:p-8">
+        <div className="flex flex-col gap-4 sm:gap-6 mb-7">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <Typography.Title
               level={3}
-              className="!mb-0 !text-gray-900 !font-bold !tracking-tight"
+              className="!mb-0 !text-gray-900 !font-bold !tracking-tight !text-lg sm:!text-2xl"
             >
               Список пользователей
             </Typography.Title>
@@ -123,9 +125,10 @@ export const HomePage = () => {
               type="primary"
               icon={<PlusOutlined />}
               onClick={() => navigate("/user/create")}
-              className="!bg-gray-900 !border-none !text-white !font-semibold !rounded-md !px-6 !py-2 hover:!bg-gray-800 transition"
+              className="w-full sm:w-auto !bg-gray-900 !border-none !text-white !font-semibold !rounded-md !px-4 sm:!px-6 !py-2 hover:!bg-gray-800 transition"
             >
-              Добавить пользователя
+              <span className="hidden sm:inline">Добавить пользователя</span>
+              <span className="sm:hidden">Добавить</span>
             </Button>
           </div>
           <Input
@@ -134,26 +137,33 @@ export const HomePage = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             allowClear
-            className="!max-w-xs !border-gray-200 !bg-gray-100 !rounded-md !py-2 !px-4 !text-base"
+            className="w-full sm:!max-w-xs !border-gray-200 !bg-gray-100 !rounded-md !py-2 !px-4 !text-base"
           />
         </div>
-        <Table
-          columns={columns}
-          dataSource={filteredUsers}
-          loading={loading}
-          rowKey="id"
-          pagination={{ pageSize: 5 }}
-          bordered={false}
-          locale={{
-            emptyText: (
-              <Empty
-                description="Нет пользователей"
-                className="text-gray-400"
-              />
-            ),
-          }}
-          className="rounded-lg overflow-hidden bg-white text-base"
-        />
+        <div className="overflow-x-auto">
+          <Table
+            columns={columns}
+            dataSource={filteredUsers}
+            loading={loading}
+            rowKey="id"
+            pagination={{
+              pageSize: 5,
+              showSizeChanger: false,
+              className:
+                "[&_.ant-pagination-item]:!bg-gray-100 [&_.ant-pagination-item]:!border-none [&_.ant-pagination-item]:!rounded-lg [&_.ant-pagination-item]:!text-gray-900 [&_.ant-pagination-item-active]:!bg-gray-900 [&_.ant-pagination-item-active]:!text-white [&_.ant-pagination-item:hover]:!bg-gray-200 [&_.ant-pagination-item:hover]:!text-black [&_.ant-pagination-item-active]:!bg-gray-900 [&_.ant-pagination-item-active]:!text-white [&_.ant-pagination-item-link]:!text-gray-900 [&_.ant-pagination-prev]:!rounded-lg [&_.ant-pagination-next]:!rounded-lg [&_.ant-pagination-prev]:!bg-gray-100 [&_.ant-pagination-next]:!bg-gray-100 [&_.ant-pagination-prev]:!border-none [&_.ant-pagination-next]:!border-none [&_.ant-pagination-prev]:!text-gray-900 [&_.ant-pagination-next]:!text-gray-900 [&_.ant-pagination-disabled]:!opacity-50",
+            }}
+            bordered={false}
+            locale={{
+              emptyText: (
+                <Empty
+                  description="Нет пользователей"
+                  className="text-gray-400"
+                />
+              ),
+            }}
+            className="rounded-lg overflow-hidden bg-white text-base min-w-[320px]"
+          />
+        </div>
       </div>
     </div>
   );

@@ -14,19 +14,19 @@ export const Header = () => {
   };
 
   return (
-    <header className="flex justify-between items-center px-8 py-5 bg-white shadow-lg rounded-b-2xl font-sans">
-      <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+    <header className="flex flex-col sm:flex-row justify-between items-center px-4 py-4 sm:px-8 sm:py-5 bg-white shadow-lg rounded-b-2xl font-sans gap-4">
+      <h1 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
         Админ-панель
       </h1>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end">
         {user?.email && (
-          <Typography.Text className="hidden sm:inline-block !text-base !text-gray-700 !font-medium !bg-gray-100 !rounded-lg !px-4 !py-2">
+          <Typography.Text className="text-base text-gray-700 font-medium bg-gray-100 rounded-lg px-3 py-2 hidden sm:inline-block">
             {user.email}
           </Typography.Text>
         )}
         <Button
           onClick={handleLogout}
-          className="!bg-gray-900 !border-none !text-white !font-semibold !rounded-lg !py-2 !px-6 hover:!bg-gray-800 transition"
+          className="w-full sm:w-auto !bg-gray-900 !border-none !text-white !font-semibold !rounded-lg !py-2 !px-4 sm:!px-6 hover:!bg-gray-800 transition"
         >
           Выйти
         </Button>
