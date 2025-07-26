@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { loginThunk, fetchMe } from "./loginThunk";
+import { logoutThunk } from "./logoutThunk";
 
 interface AuthState {
   user: { email: string } | null;
@@ -33,6 +34,9 @@ export const authSlice = createSlice({
       })
       .addCase(fetchMe.fulfilled, (state, { payload }) => {
         state.user = payload;
+      })
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.user = null;
       });
   },
 });
